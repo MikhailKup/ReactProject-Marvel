@@ -1,5 +1,4 @@
-import PropTypes from 'prop-types'
-import { Component } from 'react'
+import { useState } from 'react'
 import AppHeader from '../appHeader/AppHeader'
 import CharInfo from '../charInfo/CharInfo'
 import CharList from '../charList/CharList'
@@ -8,42 +7,31 @@ import RandomChar from '../randomChar/RandomChar'
 
 import decoration from '../../resources/img/vision.png'
 
+const App = () => {
+	const [selectedChar, setChar] = useState(null);
 
-
-class App extends Component {
-	state = {
-		selectedChar: null,
-	}
-
-	onCharSelected = id => {
-		this.setState({ selectedChar: id })
-	}
-
-	render() {
-		return (
-			<div className='app'>
-				<AppHeader />
-				<main>
+	function onCharSelected(id) {
+		setChar(selectedChar => id);
+	};
+	return (
+		<div className='app'>
+			<AppHeader />
+			<main>
+				<ErrorBoundary>
+					<RandomChar />
+				</ErrorBoundary>
+				<div className='char__content'>
 					<ErrorBoundary>
-						<RandomChar />
+						<CharList onCharSelected={onCharSelected} />
 					</ErrorBoundary>
-					<div className='char__content'>
-						<ErrorBoundary>
-							<CharList onCharSelected={this.onCharSelected} />
-						</ErrorBoundary>
-						<ErrorBoundary>
-							<CharInfo charId={this.state.selectedChar} />
-						</ErrorBoundary>
-					</div>
-					<img className='bg-decoration' src={decoration} alt='vision' />
-				</main>
-			</div>
-		)
-	}
-}
-
-App.propTypes = {
-	onCharSelected: PropTypes.func,
+					<ErrorBoundary>
+						<CharInfo charId={selectedChar} />
+					</ErrorBoundary>
+				</div>
+				<img className='bg-decoration' src={decoration} alt='vision' />
+			</main>
+		</div>
+	)
 }
 
 export default App
