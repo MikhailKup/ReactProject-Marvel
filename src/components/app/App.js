@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import ComicsPage from '../comicsPage/ComicsPage'
 import AppHeader from '../appHeader/AppHeader'
 import CharInfo from '../charInfo/CharInfo'
 import CharList from '../charList/CharList'
@@ -15,7 +16,8 @@ const App = () => {
 	};
 	return (
 		<div className='app'>
-			<AppHeader />
+			<ComicsPage/>
+			{/* <AppHeader />
 			<main>
 				<ErrorBoundary>
 					<RandomChar />
@@ -29,7 +31,7 @@ const App = () => {
 					</ErrorBoundary>
 				</div>
 				<img className='bg-decoration' src={decoration} alt='vision' />
-			</main>
+			</main> */}
 		</div>
 	)
 }
