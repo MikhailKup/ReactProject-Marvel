@@ -17,12 +17,10 @@ const AppHeader = () => {
                 <ul>
                     <li><NavLink end
                     style={setActiveStyle()}
-                    activeStyle={{'color': '#9f0013'}}
                     to="/">Characters</NavLink></li>
                     /
                     <li><NavLink end
                     style={setActiveStyle()}
-                    activeStyle={{'color': '#9f0013'}}
                     to="/comics">Comics</NavLink></li>
                 </ul>
             </nav>

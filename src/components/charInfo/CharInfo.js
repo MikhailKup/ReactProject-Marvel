@@ -1,4 +1,5 @@
 import PropTypes from 'prop-types'
+import { Link } from 'react-router-dom';
 import { useEffect, useState } from 'react'
 import useMarvelService from '../../services/MarvelService'
 import ErrorMessage from '../errors/ErrorMessage'
@@ -73,9 +74,9 @@ const View = ({ char }) => {
 				{comics.length > 0 ? null : 'There is comics for this character'}
 				{comics.map((item, i) => {
 					return (
-						<li className='char__comics-item' key={i}>
+						<Link to={`/comics/${item.resourceURI.split('/').pop()}`} className='char__comics-item' key={i}>
 							{item.name}
-						</li>
+						</Link>
 					)
 				})}
 			</ul>
