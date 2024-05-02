@@ -1,0 +1,30 @@
+.container {
+	margin: 0px auto;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	margin-top: 100px;
+}
+form {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	padding: 30px;
+	border: 1px solid #000;
+	width: 600px;
+}
+.form-wrapper {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	margin-top: 20px;
+	margin-bottom: 30px;
+}
+.form-bottom {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+.red {
+	color: red;
+}

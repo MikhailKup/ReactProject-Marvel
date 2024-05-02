@@ -6,8 +6,8 @@ import Spinner from '../spinner/Spinner';
 import './comicsList.scss';
 
 const ComicsList = (props) => {
-    const [comicsList, setComicsList] = useState([]);
-    const [newItemLoading, setNewItemLoading] = useState(false);
+	const [comicsList, setComicsList] = useState([]);
+	const [newItemLoading, setNewItemLoading] = useState(false);
 	const [offset, setOffset] = useState(0);
 	const [comicsEnded, setComicsEnded] = useState(false);
 
@@ -22,7 +22,7 @@ const ComicsList = (props) => {
 			.then(onComicsListLoaded)
 	}
 
-    const onComicsListLoaded = newComicsList => {
+	const onComicsListLoaded = newComicsList => {
 		let ended = false
 		if (newComicsList.length < 8) {
 			ended = true
@@ -33,7 +33,7 @@ const ComicsList = (props) => {
 		setComicsEnded(ended)
 	}
 
-    function renderItems(arr) {
+	function renderItems(arr) {
 		const items = arr.map((item, i) => {
 			return (
                 <li className="comics__item" key={i}>

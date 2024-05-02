@@ -1,0 +1,26 @@
+.App {
+	padding: 50px 100px;
+	font-size: 20px;
+	background: #5b5555;
+	color: #fff;
+	display: flex;flex-direction: column;
+}
+.List {
+	margin-bottom: 15px;
+}
+.Li {
+	margin-bottom: 10px;
+	border-bottom: 1px solid #eee;
+}
+.btn {
+	padding: 5px;
+	margin-bottom: 10px;
+}
+.number {
+	color: #1faf71;
+	font-size: 30px;
+	font-weight: 700;
+}
+.question {
+	margin-left: 20px;
+}
