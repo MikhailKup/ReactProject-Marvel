@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react'
 import mjolnir from '../../resources/img/mjolnir.png'
 import useMarvelService from '../../services/MarvelService'
 import Spinner from '../spinner/Spinner'
-import ErrorMessage from '../errors/ErrorMessage'
+import CriticalErrorMessage from '../errors/ErrorMessage'
 import './randomChar.scss'
 
 const RandomChar = () => {
@@ -30,7 +30,7 @@ const RandomChar = () => {
 	};
 
 	const spinner = loading ? <Spinner/> : null;
-	const errorMessage = error ? <ErrorMessage/> : null;
+	const errorMessage = error ? <CriticalErrorMessage/> : null;
 	const content = !(loading || error) ? <View char={char}/> : null;
 	return (
 		<div className='randomchar'>

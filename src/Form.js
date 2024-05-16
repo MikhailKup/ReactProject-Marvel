@@ -1,72 +1,23 @@
-import { useState, memo, useCallback } from 'react'
 import { Container } from 'react-bootstrap'
+import InputComponent from './Input';
 import './Form.css'
 
-// class Form extends PureComponent {
-// 	render() {
-// 		console.log('render');
-// 		return (
-// 			<Container>
-// 					<form className="w-50 border mt-5 p-3 m-auto">
-// 							<div className="mb-3">
-// 									<label htmlFor="exampleFormControlInput1" className="form-label mt-3">Email address</label>
-// 									<input value={this.props.mail} type="email" className='form-control' id="exampleFormControlInput1" placeholder="name@example.com"/>
-// 									</div>
-// 									<div className="mb-3">
-// 									<label htmlFor="exampleFormControlTextarea1" className="form-label">Example textarea</label>
-// 									<textarea value={this.props.text} className="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
-// 							</div>
-// 					</form>
-// 			</Container>
-// 		)
-// 	}
-// };
-
-
-// const propsCompare = (prevProps, nextProps) => {
-// 	return prevProps.mail.name === nextProps.mail.name && prevProps.text === nextProps.text;
-// };
-
-const Form = memo((props) => {
+const Form = (props) => {
 	console.log('render');
 	return (
 			<Container>
 					<form className="w-50 border mt-5 p-3 m-auto">
 							<div className="mb-3">
-									<label htmlFor="exampleFormControlInput1" className="form-label mt-3">Email address</label>
-									<input value={props.mail} type="email" className='form-control' id="exampleFormControlInput1" placeholder="name@example.com"/>
-									</div>
-									<div className="mb-3">
-									<label htmlFor="exampleFormControlTextarea1" className="form-label">Example textarea</label>
-									<textarea value={props.text} className="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+								<label htmlFor="exampleFormControlInput1" className="form-label mt-3">Email address</label>
+								<InputComponent/>
+							</div>
+							<div className="mb-3">
+								<label htmlFor="exampleFormControlTextarea1" className="form-label">Example textarea</label>
+								<textarea value={props.text} className="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
 							</div>
 					</form>
 			</Container>
 	)
-})
-
-function Appp() {
-	const [data, setData] = useState({
-			mail: "second@example.com",
-			text: 'another text'
-	});
-
-	const onLog = useCallback(() => {
-		console.log('wow');
-	}, [])
-
-	return (
-			<>
-					<Form mail={data.mail} text={data.text} onLog={onLog}/>
-					<button 
-							onClick={() => setData({
-									mail: "second@example.com",
-									text: 'another text'
-							})}>
-							Click me
-					</button>
-			</>
-	);
 }
 
-export default Appp
+export default Form;

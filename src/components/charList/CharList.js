@@ -1,7 +1,8 @@
 import { useState, useEffect, useRef } from 'react'
 import useMarvelService from '../../services/MarvelService'
-import ErrorMessage from '../errors/ErrorMessage'
+import CriticalErrorMessage from '../errors/ErrorMessage'
 import Spinner from '../spinner/Spinner'
+import { CSSTransition, TransitionGroup } from 'react-transition-group'
 import './charList.scss'
 
 const CharList = (props) => {
@@ -52,32 +53,40 @@ const CharList = (props) => {
 			}
 
 			return (
-				<li
-					className='char__item'
-					tabIndex={0}
-					ref={el => itemsRef.current[i] = el}
-					key={item.id}
-					onClick=    {() => {
-						props.onCharSelected(item.id)
-						focusOnItem(i)
-					}}
-					onKeyPress={(e) => {
-						if (e.key === ' ' || e.key === 'Enter') {
+				<CSSTransition timeout={500} key={item.id} classNames='char__item'>
+					<li
+						className='char__item'
+						tabIndex={0}
+						ref={el => itemsRef.current[i] = el}
+						key={item.id}
+						onClick=    {() => {
 							props.onCharSelected(item.id)
 							focusOnItem(i)
-						}
-					}}
-				>
-					<img src={item.thumbnail} alt={item.name} style={imgStyle} />
-					<div className='char__name'>{item.name}</div>
-				</li>
+						}}
+						onKeyPress={(e) => {
+							if (e.key === ' ' || e.key === 'Enter') {
+								props.onCharSelected(item.id)
+								focusOnItem(i)
+							}
+						}}
+					>
+						<img src={item.thumbnail} alt={item.name} style={imgStyle} />
+						<div className='char__name'>{item.name}</div>
+					</li>
+				</CSSTransition>
 			)
 		})
-		return <ul className='char__grid'>{items}</ul>
+		return (
+			<ul className='char__grid'>
+				<TransitionGroup component={null}>
+					{items}
+				</TransitionGroup>
+			</ul>
+		)
 	}
 
 	const items = renderItems(charList);
-	const errorMessage = error ? <ErrorMessage /> : null
+	const errorMessage = error ? <CriticalErrorMessage /> : null
 	const spinner = loading && !newItemLoading ? <Spinner /> : null
 	return (
 		<div className='char__list'>

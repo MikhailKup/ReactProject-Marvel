@@ -2,7 +2,7 @@ import PropTypes from 'prop-types'
 import { Link } from 'react-router-dom';
 import { useEffect, useState } from 'react'
 import useMarvelService from '../../services/MarvelService'
-import ErrorMessage from '../errors/ErrorMessage'
+import CriticalErrorMessage from '../errors/ErrorMessage'
 import Skeleton from '../skeleton/Skeleton'
 import Spinner from '../spinner/Spinner'
 import './charInfo.scss'
@@ -30,7 +30,7 @@ const CharInfo = props => {
 
 	const skeleton = char || loading || error ? null : <Skeleton />
 	const spinner = loading ? <Spinner /> : null
-	const errorMessage = error ? <ErrorMessage /> : null
+	const errorMessage = error ? <CriticalErrorMessage /> : null
 	const content = !(loading || error || !char) ? <View char={char} /> : null
 
 	return (

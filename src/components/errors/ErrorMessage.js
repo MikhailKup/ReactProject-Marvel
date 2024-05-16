@@ -1,7 +1,7 @@
 import img from './error.gif'
 import './ErrorMessage.scss'
 
-const ErrorMessage = () => {
+const CriticalErrorMessage = () => {
 	return (
 		<div className="error-message">
 			<img src={img} alt="Error" className='error-message'/>
@@ -9,4 +9,4 @@ const ErrorMessage = () => {
   )
 };
 
-export default ErrorMessage
+export default CriticalErrorMessage;
