@@ -18,7 +18,7 @@ const SingleCharPage = ({data}) => {
 				<h2 className='singlechar__name'>{name}</h2>
 				<p className='singlechar__descr'>{bigdescription}</p>
 			</div>
-			<Link className='singlechar__back' to='/'>
+			<Link className='singlechar__back' to='/characters'>
 				Back to all
 			</Link>
 		</div>

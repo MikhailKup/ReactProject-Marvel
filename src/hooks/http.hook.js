@@ -1,6 +1,6 @@
 import { useState, useCallback } from 'react';
 
-const useHttp = (e) => {
+const useHttp = () => {
 	const [process, setProcess] = useState('waiting');
 
 	const request = useCallback(async (url, method = 'GET', body = null, 
