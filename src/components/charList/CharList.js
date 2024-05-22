@@ -5,13 +5,28 @@ import Spinner from '../spinner/Spinner'
 import { CSSTransition, TransitionGroup } from 'react-transition-group'
 import './charList.scss'
 
+const setContent = (process, Component, newItemLoading) => {
+	switch(process) {
+		case 'waiting':
+			return <Spinner/>;
+		case 'loading':
+			return newItemLoading ? <Component/> : <Spinner/>;
+		case 'confirmed':
+			return <Component/>;
+		case 'error':
+			return <CriticalErrorMessage/>
+		default:
+			throw new Error();
+	}
+};
+
 const CharList = (props) => {
 	const [charList, setCharList] = useState([]);
 	const [newItemLoading, setNewItemLoading] = useState(false);
 	const [offset, setOffset] = useState(210);
 	const [charEnded, setCharEnded] = useState(false);
 
-	const {loading, error, getAllCharacters} = useMarvelService();
+	const { getAllCharacters, process, setProcess } = useMarvelService();
 
 	useEffect(() => {
 		onRequest(offset, true)
@@ -21,6 +36,7 @@ const CharList = (props) => {
 		initial ? setNewItemLoading(false) : setNewItemLoading(true)
 		getAllCharacters(offset)
 			.then(onCharListLoaded)
+			.then(() => setProcess('confirmed'));
 	}
 
 	const onCharListLoaded = newCharList => {
@@ -85,14 +101,9 @@ const CharList = (props) => {
 		)
 	}
 
-	const items = renderItems(charList);
-	const errorMessage = error ? <CriticalErrorMessage /> : null
-	const spinner = loading && !newItemLoading ? <Spinner /> : null
 	return (
 		<div className='char__list'>
-			{errorMessage}
-			{spinner}
-			{items}
+			{setContent(process, () => renderItems(charList), newItemLoading)}
 			<button
 				className='button button__main button__long'
 				disabled={newItemLoading}
