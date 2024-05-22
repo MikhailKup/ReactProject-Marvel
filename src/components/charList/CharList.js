@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from 'react'
+import { useState, useEffect, useRef, useMemo } from 'react'
 import useMarvelService from '../../services/MarvelService'
 import CriticalErrorMessage from '../errors/ErrorMessage'
 import Spinner from '../spinner/Spinner'
@@ -101,9 +101,13 @@ const CharList = (props) => {
 		)
 	}
 
+	const elements = useMemo(() => {
+		return setContent(process, () => renderItems(charList), newItemLoading)
+	}, [process]);
+
 	return (
 		<div className='char__list'>
-			{setContent(process, () => renderItems(charList), newItemLoading)}
+			{elements}
 			<button
 				className='button button__main button__long'
 				disabled={newItemLoading}
